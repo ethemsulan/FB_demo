@@ -77,7 +77,7 @@ function initPushwoosh() {
     {
         registerPushwooshAndroid();
     }
-};
+}
 var app = {
 	// Application Constructor
 	initialize : function() {
