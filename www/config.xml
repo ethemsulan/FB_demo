@@ -26,7 +26,7 @@
 	<gap:plugin name="com.phonegap.plugin.statusbar" version="1.1.0" />
 	
 	    <!-- Pushwoosh plugin -->
-    <gap:plugin name="https://github.com/Pushwoosh/pushwoosh-phonegap-3.0-plugin.git" source="plugins.cordova.io"/>
+    <gap:plugin name="com.pushwoosh.plugins.pushwoosh" version="3.4.5" source="plugins.cordova.io" />
 	
 	<gap:config-file platform="ios" parent="UIStatusBarHidden">
 	    <true/>
@@ -79,8 +79,10 @@
     <access origin="http://10.0.0.31*" />
     <access origin="http://85.97.120.30*" />
     <access origin="http://85.97.120.30:9090*" />
-    <access origin="*.pushwoosh.com"/> <!-- allow pushwoosh service -->
     <access origin="*" />
+    <access origin="*.pushwoosh.com"/> <!-- allow pushwoosh service -->
+    
+    
 	
 	
     
