@@ -81,7 +81,6 @@
     <access origin="http://85.97.120.30:9090*" />
     <access origin="*" />
     <access origin="*"/> <!-- allow all pages, use for development -->
-	<access origin="*.pushwoosh.com"/> <!-- allow pushwoosh service -->
     
     
 	
