@@ -76,8 +76,10 @@
     <access origin="http://10.0.0.31*" />
     <access origin="http://85.97.120.30*" />
     <access origin="http://85.97.120.30:9090*" />
+    <access origin="*.pushwoosh.com"/>
     <access origin="*" />
 	
-		    
+	<gap:plugin name="com.phonegap.plugins.pushplugin" />
+	
     
 </widget>
