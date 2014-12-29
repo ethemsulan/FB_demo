@@ -33,3 +33,4 @@ function loadMapScript(callbackFunctionName) {
        script.src += '&callback=' + callbackFunctionName;
        document.body.appendChild(script);
 }
+

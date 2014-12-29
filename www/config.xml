@@ -79,7 +79,6 @@
     <access origin="*.pushwoosh.com"/>
     <access origin="*" />
 	
-	<gap:plugin name="com.phonegap.plugins.pushplugin" />
 	
     
 </widget>
