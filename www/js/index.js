@@ -71,21 +71,8 @@ var pieData = [
 
 }
 ];		 
-function initPushwoosh() {
-    var pushNotification = window.plugins.pushNotification;
-    registerPushwooshAndroid();
-    
-    // if(device.platform == "Android")
-    // {
-        // registerPushwooshAndroid();
-    // }
-};
-function init() {
-    document.addEventListener("deviceready", initPushwoosh, true);
- 
-    //rest of the code
-    app.onDeviceReady();
-};
+
+
 var app = {
 	// Application Constructor
 	initialize : function() {
@@ -109,11 +96,20 @@ var app = {
 		console.log("ondevice ready");
 		app.receivedEvent('deviceready');
 		app.first_init();
-		
+		app.callPush();
 	//new Chart(document.getElementById("line").getContext("2d")).Line(lineChartData);
 	  
 		
 	},
+	callPush:function initPushwoosh() {
+        var pushNotification = window.plugins.pushNotification;
+        registerPushwooshAndroid();
+        
+        // if(device.platform == "Android")
+        // {
+            // registerPushwooshAndroid();
+        // }
+    },
 	// Update DOM on a Received Event
 	receivedEvent : function(id) {
 		console.log("receive event");
@@ -228,6 +224,7 @@ var app = {
 		return p;
 	},
 	first_init : function(){
+	    initPushwoosh();
 		app.uuid = app.isnull(device.uuid);
 		//if (app.uuid==".")
 		app.uuid="586BC0F6-09DC-44FB-8F1D-A3ABCB8E0C80";
