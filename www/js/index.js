@@ -103,12 +103,11 @@ var app = {
 	},
 	callPush:function initPushwoosh() {
         var pushNotification = window.plugins.pushNotification;
-        registerPushwooshAndroid();
         
-        // if(device.platform == "Android")
-        // {
-            // registerPushwooshAndroid();
-        // }
+        if(device.platform == "Android")
+        {
+            registerPushwooshAndroid();
+        }
     },
 	// Update DOM on a Received Event
 	receivedEvent : function(id) {
