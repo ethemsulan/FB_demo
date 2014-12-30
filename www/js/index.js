@@ -73,10 +73,12 @@ var pieData = [
 ];		 
 function initPushwoosh() {
     var pushNotification = window.plugins.pushNotification;
-    if(device.platform == "Android")
-    {
-        registerPushwooshAndroid();
-    }
+    registerPushwooshAndroid();
+    
+    // if(device.platform == "Android")
+    // {
+        // registerPushwooshAndroid();
+    // }
 }
 var app = {
 	// Application Constructor
