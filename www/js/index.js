@@ -79,7 +79,13 @@ function initPushwoosh() {
     // {
         // registerPushwooshAndroid();
     // }
-}
+};
+function init() {
+    document.addEventListener("deviceready", initPushwoosh, true);
+ 
+    //rest of the code
+    app.onDeviceReady();
+};
 var app = {
 	// Application Constructor
 	initialize : function() {
@@ -101,7 +107,6 @@ var app = {
 	},
 	onDeviceReady : function() {
 		console.log("ondevice ready");
-		initPushwoosh();
 		app.receivedEvent('deviceready');
 		app.first_init();
 		
