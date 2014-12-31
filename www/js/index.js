@@ -107,36 +107,36 @@ var app = {
 		console.log("ondevice ready");
 		  initPushwoosh();
 		app.receivedEvent('deviceready');
-		navigator.geolocation.getCurrentPosition(app.onSuccess, app.onError);
+		// navigator.geolocation.getCurrentPosition(app.onSuccess, app.onError);
 		app.first_init();
 	//new Chart(document.getElementById("line").getContext("2d")).Line(lineChartData);
 	  
 		
 	},
 	//google map start
-	onSuccess: function(position){
-        var longitude = position.coords.longitude;
-        var latitude = position.coords.latitude;
-        var latLong = new google.maps.LatLng(latitude, longitude);
- 
-        var mapOptions = {
-            center: latLong,
-            zoom: 13,
-            mapTypeId: google.maps.MapTypeId.ROADMAP
-        };
- 
-        var map = new google.maps.Map(document.getElementById("map"), mapOptions);
-    
-        var marker = new google.maps.Marker({
-              position: latLong,
-              map: map,
-              title: 'my location'
-          });
-    },
-    
-    onError: function(error){
-        alert("the code is " + error.code + ". \n" + "message: " + error.message);
-    },
+	// onSuccess: function(position){
+        // var longitude = position.coords.longitude;
+        // var latitude = position.coords.latitude;
+        // var latLong = new google.maps.LatLng(latitude, longitude);
+//  
+        // var mapOptions = {
+            // center: latLong,
+            // zoom: 13,
+            // mapTypeId: google.maps.MapTypeId.ROADMAP
+        // };
+//  
+        // var map = new google.maps.Map(document.getElementById("map"), mapOptions);
+//     
+        // var marker = new google.maps.Marker({
+              // position: latLong,
+              // map: map,
+              // title: 'my location'
+          // });
+    // },
+//     
+    // onError: function(error){
+        // alert("the code is " + error.code + ". \n" + "message: " + error.message);
+    // },
     //google map end
 	// Update DOM on a Received Event
 	receivedEvent : function(id) {
@@ -237,8 +237,8 @@ var app = {
 		        $("#un_istatistik").append(app.user_name+ "("+app.total_points+")");
 	},
 	fnc_EnYakin : function() {
-				$("#un_enyakin").empty();
-		        $("#un_enyakin").append(app.user_name+ "("+app.total_points+")");
+				// $("#map").empty();
+		        // $("#map").append(app.user_name+ "("+app.total_points+")");
 	},			
 	member_savefunc : function() {
 	},	
