@@ -440,6 +440,22 @@ var app = {
 				optimized : false
 				//animation : google.maps.Animation.BOUNCE
 			});
+
+// 			my new position
+    var location2 = new google.maps.LatLng(41.0186111, 28.9647222);
+        map.addMarker({
+          'position': location2,
+          'title': "Hello GoogleMap for Cordova!"
+        });
+        const GOOGLE = new plugin.google.maps.LatLng(37.422858, -122.085065);
+        document.getElementById('map').addMarker({
+          'position': GOOGLE,
+          'myMsg': 'Hello'
+        }, function(marker) {
+          alert(marker.get("myMsg"));
+        });
+
+// end my new position
 		};
 
 		var onGeoFail = function(error) {
