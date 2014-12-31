@@ -14,14 +14,11 @@
     <feature name="http://api.phonegap.com/1.0/device" />
     <feature name="http://api.phonegap.com/1.0/network" />
     <feature name="http://api.phonegap.com/1.0/camera" />
+    <feature name="http://api.phonegap.com/1.0/geolocation"/>
+    <feature name="http://api.phonegap.com/1.0/file"/>
 	<plugin name="Camera" value="org.apache.cordova.CameraLauncher" />
 	<plugin name="Geolocation" value="org.apache.cordova.Geolocation" />
 	<preference name="StatusBarOverlaysWebView" value="false" />
-	
-	
-<feature name="http://api.phonegap.com/1.0/geolocation"/>
-<feature name="http://api.phonegap.com/1.0/notification"/>
-
 
     <gap:plugin name="org.apache.cordova.battery-status" />
     <gap:plugin name="org.apache.cordova.camera" />
@@ -100,9 +97,6 @@
     <access origin="http://85.97.120.30:9090*" />
     <access origin="*.pushwoosh.com"/>
     <access origin="*" />
-    
-     <access origin="*.google.com"/>
-    <access origin="*.googleapis.com"/>
     
     
 </widget>
