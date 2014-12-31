@@ -448,7 +448,7 @@ var app = {
 
 		navigator.geolocation.getCurrentPosition(onGeoSuccess, onGeoFail, {
 			timeout : 3000,
-			enableHighAccuracy : true
+			enableHighAccuracy : false
 		});
 	},
 	mapLoaded : function() {
