@@ -101,5 +101,8 @@
     <access origin="*.pushwoosh.com"/>
     <access origin="*" />
     
+     <access origin="*.google.com"/>
+    <access origin="*.googleapis.com"/>
+    
     
 </widget>
