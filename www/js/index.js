@@ -84,6 +84,7 @@ function initPushwoosh() {
         registerPushwooshIOS();
     }
 }
+
 var app = {
 	// Application Constructor
 	initialize : function() {
@@ -440,22 +441,34 @@ var app = {
 				optimized : false
 				//animation : google.maps.Animation.BOUNCE
 			});
+			
+		//start manuel position
+        // second position for kadikoy
+            var location2 = new google.maps.LatLng(40.980141, 29.08227);
+            var currentLocationMarker2 = new google.maps.Marker({
+            position : location2,
+            map : map,
+            bounds : false,
+            title : 'Buradasınız2',
+            //icon : image,
+            //shape : shape,
+            optimized : false
+            //animation : google.maps.Animation.BOUNCE
+            });
+            // third position for uskudar
+            var location3 = new google.maps.LatLng(41.026066, 29.048475);
+            var currentLocationMarker2 = new google.maps.Marker({
+            position : location3,
+            map : map,
+            bounds : false,
+            title : 'Buradasınız2',
+            //icon : image,
+            //shape : shape,
+            optimized : false
+            //animation : google.maps.Animation.BOUNCE
+            });
+            //end manuel position
 
-// 			my new position
-    var location2 = new google.maps.LatLng(41.0186111, 28.9647222);
-        map.addMarker({
-          'position': location2,
-          'title': "Hello GoogleMap for Cordova!"
-        });
-        const GOOGLE = new plugin.google.maps.LatLng(37.422858, -122.085065);
-        document.getElementById('map').addMarker({
-          'position': GOOGLE,
-          'myMsg': 'Hello'
-        }, function(marker) {
-          alert(marker.get("myMsg"));
-        });
-
-// end my new position
 		};
 
 		var onGeoFail = function(error) {
@@ -463,14 +476,11 @@ var app = {
 		};
 
 		navigator.geolocation.getCurrentPosition(onGeoSuccess, onGeoFail, {
-			timeout : 3000,
-			enableHighAccuracy : false
+			enableHighAccuracy : true
 		});
 	},
 	mapLoaded : function() {
 		console.log("mapLoaded");
 		app.detectCurrentLocation();
-	}
-    	
-};
+}
 
