@@ -413,39 +413,38 @@ var app = {
 	},
 
 	detectCurrentLocation : function() {
-		var onGeoSuccess = function(position) {
-			console.log(position);
+        var onGeoSuccess = function(position) {
+            console.log(position);
+        
+            var location = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
 
-			var location = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+            google.maps.visualRefresh = true;
 
-			google.maps.visualRefresh = true;
-
-			var mapOptions = {
-				zoom : 13,
-				center : location,
-				rotateControl : false,
-				streetViewControl : false,
-				mapTypeControl : false,
-				draggable : true,
-				mapTypeId : google.maps.MapTypeId.ROADMAP
-			};
-			var map = new google.maps.Map(document.getElementById('map'), mapOptions);
-
-			var currentLocationMarker = new google.maps.Marker({
-				position : location,
-				map : map,
-				bounds : false,
-				title : 'Buradasınız',
-				//icon : image,
-				//shape : shape,
-				optimized : false
-				//animation : google.maps.Animation.BOUNCE
-			});
-			
-		//start manuel position
-        // second position for kadikoy
-            var location2 = new google.maps.LatLng(40.980141, 29.08227);
-            var currentLocationMarker2 = new google.maps.Marker({
+            var mapOptions = {
+                zoom : 13,
+                center : location,
+                rotateControl : false,
+                streetViewControl : false,
+                mapTypeControl : false,
+                draggable : true,
+                mapTypeId : google.maps.MapTypeId.ROADMAP
+            };
+            var map = new google.maps.Map(document.getElementById('map'), mapOptions);
+            
+            var currentLocationMarker = new google.maps.Marker({
+                position : location,
+                map : map,
+                bounds : false,
+                title : 'Buradasınız',
+                //icon : image,
+                //shape : shape,
+                optimized : false
+                //animation : google.maps.Animation.BOUNCE
+            });
+//start manuel position
+//      second position for kadikoy
+        var location2 = new google.maps.LatLng(40.980141, 29.08227);
+        var currentLocationMarker2 = new google.maps.Marker({
             position : location2,
             map : map,
             bounds : false,
@@ -454,10 +453,10 @@ var app = {
             //shape : shape,
             optimized : false
             //animation : google.maps.Animation.BOUNCE
-            });
-            // third position for uskudar
-            var location3 = new google.maps.LatLng(41.026066, 29.048475);
-            var currentLocationMarker2 = new google.maps.Marker({
+        });
+//      third position for uskudar
+        var location3 = new google.maps.LatLng(41.026066, 29.048475);
+        var currentLocationMarker2 = new google.maps.Marker({
             position : location3,
             map : map,
             bounds : false,
@@ -466,21 +465,23 @@ var app = {
             //shape : shape,
             optimized : false
             //animation : google.maps.Animation.BOUNCE
-            });
-            //end manuel position
+        });
+//end manuel position
+        
+        };
 
-		};
-
-		var onGeoFail = function(error) {
-			console.log(error);
-		};
-
-		navigator.geolocation.getCurrentPosition(onGeoSuccess, onGeoFail, {
-			enableHighAccuracy : true
-		});
-	},
-	mapLoaded : function() {
-		console.log("mapLoaded");
-		app.detectCurrentLocation();
-}
+        var onGeoFail = function(error) {
+            console.log(error);
+        };
+        
+        navigator.geolocation.getCurrentPosition(onGeoSuccess, onGeoFail, {
+            enableHighAccuracy : true
+        });
+    },
+    mapLoaded : function() {
+        console.log("mapLoaded");
+        app.detectCurrentLocation();
+    }
+        
+};
 
