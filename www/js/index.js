@@ -417,7 +417,7 @@ var app = {
             console.log(position);
         
             var location = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
-
+            
             google.maps.visualRefresh = true;
 
             var mapOptions = {
@@ -430,42 +430,80 @@ var app = {
                 mapTypeId : google.maps.MapTypeId.ROADMAP
             };
             var map = new google.maps.Map(document.getElementById('map'), mapOptions);
-            
+            //     current location manuel change default image
+            var image = {
+                url : 'img/aaa.gif',
+                size : new google.maps.Size(38, 38),
+                //size : new google.maps.Size(10, 10),
+                origin : new google.maps.Point(0, 0),
+                // The anchor for this image is the base of the flagpole at 0,32.
+                anchor : new google.maps.Point(19, 19)
+                //anchor : new google.maps.Point(5, 5)
+            };
             var currentLocationMarker = new google.maps.Marker({
                 position : location,
                 map : map,
                 bounds : false,
                 title : 'Buradasınız',
-                //icon : image,
+                icon : image,
                 //shape : shape,
                 optimized : false
                 //animation : google.maps.Animation.BOUNCE
             });
+
+//      end current location add label and listener
+
 //start manuel position
 //      second position for kadikoy
         var location2 = new google.maps.LatLng(40.980141, 29.08227);
-        var currentLocationMarker2 = new google.maps.Marker({
+        var kadikoyMarker = new google.maps.Marker({
             position : location2,
             map : map,
             bounds : false,
-            title : 'Buradasınız2',
+            title : 'Kadıköy',
             //icon : image,
             //shape : shape,
             optimized : false
             //animation : google.maps.Animation.BOUNCE
         });
+       
+//      kadikoy add label and listener
+        setKadikotMessage(kadikoyMarker);
+        function setKadikotMessage(marker) {
+          var message = "<div>Kadıköy</div> <div>Sahil</div>";
+          var infowindow = new google.maps.InfoWindow({
+            content: message
+          });
+        
+          google.maps.event.addListener(marker, 'click', function() {
+            infowindow.open(map, marker);
+          });
+        }
 //      third position for uskudar
+
         var location3 = new google.maps.LatLng(41.026066, 29.048475);
-        var currentLocationMarker2 = new google.maps.Marker({
+        var uskudarMarker = new google.maps.Marker({
             position : location3,
             map : map,
             bounds : false,
-            title : 'Buradasınız2',
+            title : 'Üsküdar',
             //icon : image,
             //shape : shape,
             optimized : false
             //animation : google.maps.Animation.BOUNCE
         });
+        //      uskudar add label and listener
+        setUskudarMessage(uskudarMarker);
+        function setUskudarMessage(marker) {
+          var message = "<div>Üsküdar</div> <div>Merkez</div>";
+          var infowindow = new google.maps.InfoWindow({
+            content: message
+          });
+        
+          google.maps.event.addListener(marker, 'click', function() {
+            infowindow.open(map, marker);
+          });
+        }
 //end manuel position
         
         };
