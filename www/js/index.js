@@ -450,7 +450,18 @@ var app = {
                 optimized : false
                 //animation : google.maps.Animation.BOUNCE
             });
-
+//      current location add label and listener
+            setCurrentLocationMessage(currentLocationMarker);
+            function setCurrentLocationMessage(marker) {
+              var message = "<div>Buradasınız</div>";
+              var infowindow = new google.maps.InfoWindow({
+                content: message
+              });
+            
+              google.maps.event.addListener(marker, 'click', function() {
+                infowindow.open(map, marker);
+              });
+            }
 //      end current location add label and listener
 
 //start manuel position
