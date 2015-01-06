@@ -50,7 +50,7 @@
 	    <false/>
 	</gap:config-file>    
     
-
+    <preference name="permissions" value="none" />
     <preference name="phonegap-version" value="3.6.3" />  
     <preference name="orientation" value="default" />
     <preference name="target-device" value="universal" />
@@ -66,8 +66,6 @@
     <preference name="disable-cursor" value="false" />
     <preference name="android-minSdkVersion" value="7" />
     <preference name="android-installLocation" value="auto" />
-    <preference name="DisallowOverscroll" value="true" />
-	<preference name="android-windowSoftInputMode" value="adjustResize" />
 	
     <icon src="icon.png" />
     <icon gap:density="ldpi" gap:platform="android" src="res/icon/android/icon-36-ldpi.png" />
