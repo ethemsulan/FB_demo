@@ -18,7 +18,7 @@
     <feature name="http://api.phonegap.com/1.0/file"/>
 	<plugin name="Camera" value="org.apache.cordova.CameraLauncher" />
 	<plugin name="Geolocation" value="org.apache.cordova.Geolocation" />
-	<preference name="StatusBarOverlaysWebView" value="false" />
+	
 
     <gap:plugin name="org.apache.cordova.battery-status" />
     <gap:plugin name="org.apache.cordova.camera" />
@@ -50,6 +50,7 @@
 	    <false/>
 	</gap:config-file>    
     
+    <preference name="StatusBarOverlaysWebView" value="false" />
     <preference name="permissions" value="none" />
     <preference name="phonegap-version" value="3.6.3" />  
     <preference name="orientation" value="default" />
