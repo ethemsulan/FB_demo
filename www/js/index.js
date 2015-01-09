@@ -465,7 +465,7 @@ var app = {
 //      end current location add label and listener
 
 //      start manuel position
-        // createMaker(map);
+        createMaker(map);
 //end manuel position
         
         };
