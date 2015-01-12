@@ -118,13 +118,14 @@ var app = {
 	},
 	onDeviceReady : function() {
 		console.log("ondevice ready");
-		  initPushwoosh();
 		app.receivedEvent('deviceready');
-		// navigator.geolocation.getCurrentPosition(app.onSuccess, app.onError);
 		app.first_init();
-	//new Chart(document.getElementById("line").getContext("2d")).Line(lineChartData);
-	  
-		
+        try{
+            initPushwoosh();
+        }catch(err) 
+        {
+                console.log(err.message);
+        }		
 	},
 	//google map start
 	// onSuccess: function(position){
