@@ -550,7 +550,7 @@ function createMaker(map){
                 map : map,
                 bounds : false,
                 title : title,
-                icon : 'img/aaa.gif',
+                icon : img_url,
                 //shape : shape,
                 optimized : false
                 //animation : google.maps.Animation.BOUNCE
