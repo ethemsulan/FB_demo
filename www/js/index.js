@@ -535,22 +535,22 @@ function createMaker(map){
                 var address = posArray[i].address;
                 var img_url = posArray[i].img_url;
                 
-                // var image = {
-                    // url : img_url,
-                    // size : new google.maps.Size(38, 38),
-                    // //size : new google.maps.Size(10, 10),
-                    // origin : new google.maps.Point(0, 0),
-                    // // The anchor for this image is the base of the flagpole at 0,32.
-                    // anchor : new google.maps.Point(19, 19)
-                    // //anchor : new google.maps.Point(5, 5)
-                // };
+                var image = {
+                    url : img_url,
+                    size : new google.maps.Size(38, 38),
+                    //size : new google.maps.Size(10, 10),
+                    origin : new google.maps.Point(0, 0),
+                    // The anchor for this image is the base of the flagpole at 0,32.
+                    anchor : new google.maps.Point(19, 19)
+                    //anchor : new google.maps.Point(5, 5)
+                };
                 var aeropostaleZorluCenter = new google.maps.LatLng(latitude, longitude);
                 var zorluCenterMarker = new google.maps.Marker({
                 position : aeropostaleZorluCenter,
                 map : map,
                 bounds : false,
                 title : title,
-                icon : img_url,
+                icon : image,
                 //shape : shape,
                 optimized : false
                 //animation : google.maps.Animation.BOUNCE
