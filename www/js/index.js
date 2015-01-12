@@ -1,3 +1,15 @@
+var isThereNewCampain=false;
+
+
+// aeropostale
+var icon2=false;
+//bananerepuvlic
+var icon3=false;
+//gap
+var icon22=false;                         
+//mark spencer
+var icon27=false;
+
 var lineChartData = {
  labels : ["","","","","","",""],
  datasets : [
@@ -155,6 +167,7 @@ var app = {
 	fnc_Barkod : function() {
 				$("#un_barkod").empty();
 		        $("#un_barkod").append(app.user_name);
+		        app.check_campains();
 	},	
 	fnc_Puanlarim : function() {
 				$("#un_puanlarim").empty();
@@ -203,11 +216,103 @@ var app = {
 				console.log("err c ", c);
 			}
 		});
+		app.check_campains();
 	},	
 	
 	fnc_Mesajlar : function() {
 				$("#un_mesajlar").empty();
 		        $("#un_mesajlar").append(app.user_name + "("+app.total_points+")");
+        $.ajax({
+            url : app.url+"GetCampains?member_id="+app.id,
+            dataType : "json",
+            success : function(a, b, c) {
+                console.log("kampanyalar");
+                $('#div_mesajlar ul').remove();
+                $('#div_mesajlar').append('<ul data-role="listview"></ul>');
+                listItems = $('#div_mesajlar').find('ul');
+                console.log("div_mesajlar 3");
+                 
+                    html ="<table style='width:100%'>";
+                    html += '<tr><td width="25%"> Şirket Adı </td>';
+                    html += '<td width="30%"> Kampanya </td>';
+                    html += '<td width="15%">İndirim Oranı</td>';
+                    //html += '<td width="15%">' + a[i].startdate + '</td>';
+                    html += '<td width="15%"> Kampanya Bitiş Tarihi</td></tr>';
+                    html += '<td > Yeni</td></tr>';
+                    html+="</table>";
+                    listItems.append('<li id="prj_header">' + html + '</li>');
+                for (var i = 0; i < a.length; i++) {
+                    if (a[i].isread=="0")
+                    html ="<table style='width:100%' bgcolor='#00FF00'>";
+                    else
+                    html ="<table style='width:100%'>";
+                    
+                    console.log("div_mesajlar 4");
+                    html += '<tr><td width="25%">'+ a[i].company_name+ '</td>';
+                    html += '<td width="30%">' + a[i].campain_name + '</td>';
+                    html += '<td width="15%">' + a[i].discount + '</td>';
+                    //html += '<td width="15%">' + a[i].startdate + '</td>';
+                    html += '<td width="15%">' + a[i].expiredate + '</td></tr>';
+                    html+="</table>";
+                    listItems.append('<li id="camp_' + a[i].campain_id + '">' + html + '</li>');
+                };
+                
+                $('#div_mesajlar ul').listview();
+                console.log("div_mesajlar 5");
+                for (var i = 0; i < a.length; i++) {
+                    console.log("div_mesajlar 6");
+                    $('#camp_' + a[i].campain_id).bind('tap',
+                    function(event, ui) {
+        
+                    $.ajax({
+                        url : app.url+"GetCampains?conn_type=setread_campain_all&member_id="+app.id,
+                        dataType : "json",
+                        success : function(a, b, c) {
+                            console.log("kampanyalar update");
+                            app.check_campains();
+                            $.mobile.changePage($('#barkod'));
+                        },
+                        error : function(a, b, c) {
+                            console.log("err a ", a);
+                            console.log("err b ", b);
+                            console.log("err c ", c);
+                            console.log("err c ", c);
+                        }
+                    }); 
+        
+                    });
+                }
+                
+            },
+            error : function(a, b, c) {
+                $("#device_info").append('hata aldı '+ '<br />');
+                element2.innerHTML = "hata username:";
+
+                console.log("err a ", a);
+                console.log("err b ", b);
+                console.log("err c ", c);
+                console.log("err c ", c);
+            }
+        });         
+        
+        
+        /*
+        $.ajax({
+            url : app.url+"GetCampains?conn_type=setread_campain_all&member_id="+app.id,
+            dataType : "json",
+            success : function(a, b, c) {
+                console.log("kampanyalar update");
+            },
+            error : function(a, b, c) {
+                $("#device_info").append('hata aldı '+ '<br />');
+
+                console.log("err a ", a);
+                console.log("err b ", b);
+                console.log("err c ", c);
+                console.log("err c ", c);
+            }
+        }); */
+        app.check_campains();
 	},	
     fnc_Profil : function() {
 				$("#un_profil").empty();
@@ -227,19 +332,25 @@ var app = {
 				$('#chk_sms').Attr('checked',true);
 				else
 				$('#chk_sms').Attr('checked',false);
-
+                app.check_campains();
 	},
 	fnc_Kampanyalar : function() {
 				$("#un_kampanyalar").empty();
 		        $("#un_kampanyalar").append(app.user_name+ "("+app.total_points+")");
+		        
+		        app.check_campains();
 	},			
 	fnc_Istatistik : function() {
 				$("#un_istatistik").empty();
 		        $("#un_istatistik").append(app.user_name+ "("+app.total_points+")");
+		        
+		        app.check_campains();
 	},
 	fnc_EnYakin : function() {
 				// $("#map").empty();
 		        // $("#map").append(app.user_name+ "("+app.total_points+")");
+		        
+		        app.check_campains();
 	},			
 	member_savefunc : function() {
 	},	
@@ -332,6 +443,137 @@ var app = {
 
 
 	},
+    check_campains : function(){
+        $.ajax({
+            url : app.url+"GetCampains?member_id="+app.id,
+            dataType : "json",
+            success : function(a, b, c) {
+                console.log("kampanyalar");
+                isThereNewCampain=false;
+                for (var i = 0; i < a.length; i++) {
+                    if ((a[i].isread=="0") || (a[i].isread=="null"))
+                    {
+                        isThereNewCampain=true;
+                        if (a[i].company_id=="2") // aeropostale
+                          icon2=true;
+                        if (a[i].company_id=="3") //bananerepuvlic
+                          icon3=true;
+                        if (a[i].company_id=="22") //gap
+                          icon22=true;                        
+                        if (a[i].company_id=="27") //mark spencer
+                          icon27=true;                        
+                    }
+                    
+            // aeropostale
+            if (icon2)
+            {
+                    console.log($("#icon2").attr('src'));
+                    $("#icon2").attr("src","img/company_icons/2_.jpg");
+            }
+            
+            //bananerepuvlic
+            if (icon3)
+            {
+                    console.log($("#icon3").attr('src'));
+                    $("#icon3").attr("src","img/company_icons/3_.jpg");
+            }
+            //gap
+            if (icon22)
+            {
+                    console.log($("#icon22").attr('src'));
+                    $("#icon22").attr("src","img/company_icons/22_.jpg");
+            }                         
+            //mark spencer
+            if (icon27)
+            {
+                    console.log($("#icon27").attr('src'));
+                    $("#icon27").attr("src","img/company_icons/27_.jpg");
+            }
+        
+        
+            if (isThereNewCampain)
+            {
+                console.log($("#img_msg").attr('src'));
+                $("#img_msg").attr("src","img/menu_icons/3_Message_y.png");
+                
+                console.log($("#img_camp").attr('src'));
+                $("#img_camp").attr("src","img/menu_icons/5_Campaign_y.png");
+        
+                console.log($("#img_msg1").attr('src'));
+                $("#img_msg1").attr("src","img/menu_icons/3_Message_y.png");
+        
+                console.log($("#img_camp1").attr('src'));
+                $("#img_camp1").attr("src","img/menu_icons/5_Campaign_y.png");
+        
+        
+                console.log($("#img_msg3").attr('src'));
+                $("#img_msg3").attr("src","img/menu_icons/3_Message_y.png");
+        
+                console.log($("#img_camp3").attr('src'));
+                $("#img_camp3").attr("src","img/menu_icons/5_Campaign_y.png");
+        
+                
+                console.log($("#img_msg5").attr('src'));
+                $("#img_msg5").attr("src","img/menu_icons/3_Message_y.png");
+        
+                console.log($("#img_camp5").attr('src'));
+                $("#img_camp5").attr("src","img/menu_icons/5_Campaign_y.png");
+        
+        
+                console.log($("#img_msg6").attr('src'));
+                $("#img_msg6").attr("src","img/menu_icons/3_Message_y.png");
+        
+                console.log($("#img_camp6").attr('src'));
+                $("#img_camp6").attr("src","img/menu_icons/5_Campaign_y.png");
+        
+            }
+            else
+            {       
+                console.log($("#img_msg").attr('src'));
+                $("#img_msg").attr("src","img/menu_icons/3_Message.png");
+        
+                console.log($("#img_camp").attr('src'));
+                $("#img_camp").attr("src","img/menu_icons/5_Campaign.png");
+        
+        
+                console.log($("#img_msg1").attr('src'));
+                $("#img_msg1").attr("src","img/menu_icons/3_Message.png");
+        
+                console.log($("#img_camp1").attr('src'));
+                $("#img_camp1").attr("src","img/menu_icons/5_Campaign.png");
+        
+        
+                console.log($("#img_msg3").attr('src'));
+                $("#img_msg3").attr("src","img/menu_icons/3_Message.png");
+        
+                console.log($("#img_camp3").attr('src'));
+                $("#img_camp3").attr("src","img/menu_icons/5_Campaign.png");
+        
+                
+                console.log($("#img_msg5").attr('src'));
+                $("#img_msg5").attr("src","img/menu_icons/3_Message.png");
+        
+                console.log($("#img_camp5").attr('src'));
+                $("#img_camp5").attr("src","img/menu_icons/5_Campaign.png");
+        
+        
+                console.log($("#img_msg6").attr('src'));
+                $("#img_msg6").attr("src","img/menu_icons/3_Message.png");
+        
+                console.log($("#img_camp6").attr('src'));
+                $("#img_camp6").attr("src","img/menu_icons/5_Campaign.png");
+        
+            }
+            };
+            },
+            error : function(a, b, c) {
+                console.log("err a ", a);
+                console.log("err b ", b);
+                console.log("err c ", c);
+                console.log("err c ", c);
+            }
+        });     
+    },  	
 	insertfunc : function() {
 		console.log("save func");
 		var result= $("#sel_personels_yeni option:selected").val();
