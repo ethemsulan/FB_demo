@@ -710,8 +710,6 @@ var app = {
         console.log("login form");
         var username = $("#username").val();
         var password = $("#password").val();
-        //if(app.status==null)
-        {
         $.ajax({            
             url : app.url+"GetMember?username="+username+"&password="+password,
             dataType : "json",
@@ -737,8 +735,7 @@ var app = {
                 console.log("err c ", c);
                 console.log("err c ", c);
             }
-        });
-        }               
+        });             
     },
 	openCamera : function() {
 		var onCamSuccess = function(imageData) {
