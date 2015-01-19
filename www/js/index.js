@@ -449,7 +449,7 @@ var app = {
 		$("#un_barkod2").append(app.user_name);
 
 		new Chart(document.getElementById("pie").getContext("2d")).Pie(pieData,pieOptions);
-		new Chart(document.getElementById("line").getContext("2d")).Line(lineChartData);
+		// new Chart(document.getElementById("line").getContext("2d")).Line(lineChartData);
 
 		$.ajax({
 			url : app.url+"GetAcitivies?member_id="+app.id+"&conType=totalpoint",
