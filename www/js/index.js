@@ -9,7 +9,8 @@ var icon3=false;
 var icon22=false;                         
 //mark spencer
 var icon27=false;
-
+// if user exist set true
+var is_guest = false;
 var lineChartData = {
  labels : ["","","","","","",""],
  datasets : [
@@ -95,7 +96,8 @@ function initPushwoosh() {
     {
         registerPushwooshIOS();
     }
-}
+};
+
 
 var app = {
 	// Application Constructor
@@ -119,7 +121,10 @@ var app = {
 	onDeviceReady : function() {
 		console.log("ondevice ready");
 		app.receivedEvent('deviceready');
+		
 		app.first_init();
+
+        
         try{
             initPushwoosh();
         }catch(err) 
@@ -127,6 +132,7 @@ var app = {
                 console.log(err.message);
         }		
 	},
+	// start login
 	//google map start
 	// onSuccess: function(position){
         // var longitude = position.coords.longitude;
@@ -296,25 +302,87 @@ var app = {
             }
         });         
         
-        
-        /*
+       
+        app.check_campains();
+	},	
+	fnc_message : function() {
+	    console.log("first click guest message: "+app.id);
         $.ajax({
-            url : app.url+"GetCampains?conn_type=setread_campain_all&member_id="+app.id,
+            url : app.url+"GetCampains?member_id="+app.id,
             dataType : "json",
             success : function(a, b, c) {
-                console.log("kampanyalar update");
+                console.log("kampanyalar");
+                $('#div_messages_gs ul').remove();
+                $('#div_messages_gs').append('<ul data-role="listview"></ul>');
+                listItems = $('#div_messages_gs').find('ul');
+                console.log("div_messages_gs 3");
+                 
+                    html ="<table style='width:100%'>";
+                    html += '<tr><td width="25%"> Şirket Adı </td>';
+                    html += '<td width="30%"> Kampanya </td>';
+                    html += '<td width="15%">İndirim Oranı</td>';
+                    //html += '<td width="15%">' + a[i].startdate + '</td>';
+                    html += '<td width="15%"> Kampanya Bitiş Tarihi</td></tr>';
+                    html += '<td > Yeni</td></tr>';
+                    html+="</table>";
+                    listItems.append('<li id="prj_header_g">' + html + '</li>');
+                for (var i = 0; i < a.length; i++) {
+                    if (a[i].isread=="0")
+                    html ="<table style='width:100%'>";
+                    else
+                    html ="<table style='width:100%'>";
+                    
+                    console.log("div_messages_gs 4");
+                    html += '<tr><td width="25%">'+ a[i].company_name+ '</td>';
+                    html += '<td width="30%">' + a[i].campain_name + '</td>';
+                    html += '<td width="15%">' + a[i].discount + '</td>';
+                    //html += '<td width="15%">' + a[i].startdate + '</td>';
+                    html += '<td width="15%">' + a[i].expiredate + '</td></tr>';
+                    html+="</table>";
+                    listItems.append('<li id="g_camp_' + a[i].campain_id + '">' + html + '</li>');
+                };
+                
+                $('#div_messages_gs ul').listview();
+                console.log("div_messages_gs 5");
+                for (var i = 0; i < a.length; i++) {
+                    console.log("div_messages_gs 6");
+                    $('#g_camp_' + a[i].campain_id).bind('tap',
+                    function(event, ui) {
+        
+                    $.ajax({
+                        url : app.url+"GetCampains?conn_type=setread_campain_all&member_id="+app.id,
+                        dataType : "json",
+                        success : function(a, b, c) {
+                            console.log("kampanyalar update");
+                            app.check_campains();
+                            $.mobile.changePage($('#g_messages'));
+                        },
+                        error : function(a, b, c) {
+                            console.log("err a ", a);
+                            console.log("err b ", b);
+                            console.log("err c ", c);
+                            console.log("err c ", c);
+                        }
+                    }); 
+        
+                    });
+                }
+                
             },
             error : function(a, b, c) {
                 $("#device_info").append('hata aldı '+ '<br />');
+                element2.innerHTML = "hata username:";
 
                 console.log("err a ", a);
                 console.log("err b ", b);
                 console.log("err c ", c);
                 console.log("err c ", c);
             }
-        }); */
-        app.check_campains();
-	},	
+        });         
+        
+       
+        // app.check_campains();
+    },  
     fnc_Profil : function() {
 				$("#un_profil").empty();
 		        $("#un_profil").append(app.user_name+ "("+app.total_points+")");
@@ -336,8 +404,10 @@ var app = {
                 app.check_campains();
 	},
 	fnc_Kampanyalar : function() {
-				$("#un_kampanyalar").empty();
-		        $("#un_kampanyalar").append(app.user_name+ "("+app.total_points+")");
+                if (is_guest == false) {
+                    $("#un_kampanyalar").empty();
+                    $("#un_kampanyalar").append(app.user_name+ "("+app.total_points+")");
+                };
 		        
 		        app.check_campains();
 	},			
@@ -409,22 +479,22 @@ var app = {
 			dataType : "json",
 			success : function(a, b, c) {
 				{
-				  app.identityno=a.identityno;
-				  app.name=a.name;
-				  app.surname=a.surname;
-				  app.birthdate=a.birthdate;
-				  app.Birth_place=a.Birth_place;
-				  app.address_type=a.address_type;
-				  app.address_text=a.address_text;
-				  app.city_id=a.city_id;
-				  app.allow_email=a.allow_email;
-				  app.allow_sms=a.allow_sms;
-				  app.mobile=a.mobile;
-				  app.work_phone=a.work_phone;
-				  app.home_phone=a.home_phone;
-				  app.fax=a.fax;
-				  app.email=a.email;
-				  app.user_name ="Merhaba : " + a.name + " " + a.surname;
+				  app.identityno=a[0].identityno;
+				  app.name=a[0].name;
+				  app.surname=a[0].surname;
+				  app.birthdate=a[0].birthdate;
+				  app.Birth_place=a[0].Birth_place;
+				  app.address_type=a[0].address_type;
+				  app.address_text=a[0].address_text;
+				  app.city_id=a[0].city_id;
+				  app.allow_email=a[0].allow_email;
+				  app.allow_sms=a[0].allow_sms;
+				  app.mobile=a[0].mobile;
+				  app.work_phone=a[0].work_phone;
+				  app.home_phone=a[0].home_phone;
+				  app.fax=a[0].fax;
+				  app.email=a[0].email;
+				  app.user_name ="Merhaba : " + a[0].name + " " + a[0].surname;
 				  				  
 				 }
 				//else
@@ -630,8 +700,46 @@ var app = {
 			}
 		});
 		}				
-	},
-
+	}, 
+	loginguest : function() {
+        $.mobile.changePage("#g_campaign");    
+        is_guest = true;
+    },
+    loginfnc : function() {
+        is_guest = false;
+        console.log("login form");
+        var username = $("#username").val();
+        var password = $("#password").val();
+        //if(app.status==null)
+        {
+        $.ajax({            
+            url : app.url+"GetMember?username="+username+"&password="+password,
+            dataType : "json",
+            success : function(a, b, c) {         
+           // $.mobile.changePage("#login");
+                if (a != null && a.length > 0) {
+                    if (a[0].status == 'ok') {
+                        $.mobile.changePage("#barkod");
+                    }else{
+                        alert("Lütfen kullanıcı adı ve şifrenizi doğru giriniz!");
+                        $('#username').removeAttr('value');
+                        $('#password').removeAttr('value'); 
+                    }
+               }else{
+                    alert("Kullanıcı adı bulunamadı!");
+                    $('#username').removeAttr('value');
+                    $('#password').removeAttr('value'); 
+               }
+            },
+            error : function(a, b, c) {
+                console.log("err a ", a);
+                console.log("err b ", b);
+                console.log("err c ", c);
+                console.log("err c ", c);
+            }
+        });
+        }               
+    },
 	openCamera : function() {
 		var onCamSuccess = function(imageData) {
 			/* No action required */
@@ -672,7 +780,11 @@ var app = {
                 draggable : true,
                 mapTypeId : google.maps.MapTypeId.ROADMAP
             };
-            var map = new google.maps.Map(document.getElementById('map'), mapOptions);
+            var map_name = "map";
+            if (is_guest) {
+                map_name = "guest_map";
+            };
+            var map = new google.maps.Map(document.getElementById(map_name), mapOptions);
             //     current location manuel change default image
             var image = {
                 url : 'img/aaa.gif',

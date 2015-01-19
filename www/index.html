@@ -15,7 +15,37 @@
  		<script type="text/javascript" src="http://www.google.com/jsapi"></script>
  		
 </head>
-    <body onload="app.onDeviceReady()">   
+    <body onload="app.onDeviceReady()">  
+        
+        <!--start login page-->
+        <div data-role="page" id="login_form">
+            <div data-role="header" align="center">
+                <h1>Login Ekranı</h1>
+            </div>
+            <div data-role="main" class="ui-content" align="center">
+             <table border="0">
+                <tr> 
+                <td>Kullanıcı Adı:<span>*</span></td>
+                <td><input type="text" id="username" placeholder="username"/> </td>
+                </tr>
+                <tr> 
+                <td>Şifre:<span>*</span></td>
+                <td><input type="text" id="password" placeholder="password"/> </td>
+                </tr>
+                <tr>
+                    <td><input type="button" name="btn_guest" id="btn_guest" value="Misafir" onclick="app.loginguest()"/></td>
+                    <td><input type="button" name="btn_login" id="btn_login" value="Giriş" onclick="app.loginfnc()"/></td>
+                </tr>
+                
+            </table>
+            <br />
+            <br />
+            <a href="#"> <img src="img/login_with_facebook.jpg" height="30"/></a>
+            </div>
+        </div> 
+        <!--end login page-->
+        
+        
 <div data-role="page" id="barkod">
     <div data-role="header" align="center">
     	<br/>
@@ -148,7 +178,7 @@ puanlarım
 			<td><input type="checkbox" id="chk_sms"/> </td>
 			</tr>
 			
-			<input type="button" name="btn_kaydet" id="btn_kaydet" value="Kaydet" onclick="app.member_savefunc()"/>
+			<input type="button" name="btn_kaydet" id="btn_kaydet" value="Kaydet" onclick="app.savefunc()"/>
 		</table>
 		
 	</div>
@@ -268,6 +298,104 @@ puanlarım
 
 
 </div><!-- /page -->
+
+<!--for guest company-->
+<div data-role="page" id="g_campaign">
+    <div data-role="header" align="center">
+        <br/>
+              <div >
+                <a href="#g_campaign" onclick="app.fnc_Kampanyalar()">   <img id="img_campaign" src="img/menu_icons/5_Campaign_.png" width="12%"> <img/></a>
+                <a href="#g_messages"  onclick="app.fnc_message()">        <img id="g_img_msg2" src="img/menu_icons/3_Message.png" width="12%"> <img/> </a>
+                <a href="#g_nearest" data-ajax="false" onclick="app.detectCurrentLocation()"><img src="img/menu_icons/7_Map.png" width="12%"> <img/></a>
+
+              </div>               
+    </div><!-- /header -->
+    <div data-role="content">
+    
+    <div id="div_campaign">
+        <br/>
+        <table>
+                    <tr valign="center"> 
+                    <td valign="center"><a href="#g_messages"  onclick="app.fnc_Mesajlar()"> <img id="g_icon1" src="img/company_icons/1.jpg" width="90%" alt="AÇEV" /></a></td>
+                    <td valign="center"><a href="#g_messages"  onclick="app.fnc_Mesajlar()"><img id="g_icon2" src="img/company_icons/2.jpg" width="90%" alt="Aeropostale" /></a></td>
+                    </tr>
+                    <tr valign="center">
+                    <td><a href="#g_messages"  onclick="app.fnc_Mesajlar()"><img id="g_icon3" src="img/company_icons/3.jpg" width="90%" alt="Banana Republic" /></a></td>
+                    <td><a href="#g_messages"  onclick="app.fnc_Mesajlar()"><img id="g_icon12" src="img/company_icons/12.jpg" width="90%" alt="Fiba Gönüllüleri" /></a></td>
+                    </tr>
+                    <tr valign="center">
+                    <td><a href="#g_messages"  onclick="app.fnc_Mesajlar()"><img id="g_icon13" src="img/company_icons/13.jpg" width="90%" alt="Fiba Air" /></a></td>
+                    <td><a href="#g_messages"  onclick="app.fnc_Mesajlar()"><img id="g_icon14" src="img/company_icons/14.jpg" width="90%" alt="Fibabanka" /></a></td>
+                    </tr>
+                    <tr valign="center">  
+                    <td><a href="#g_messages"  onclick="app.fnc_Mesajlar()"><img id="g_icon17" src="img/company_icons/17.jpg" width="90%" alt="Florence Nightingale İstanbul" /></a></td>
+                    <td><a href="#g_messages"  onclick="app.fnc_Mesajlar()"><img id="g_icon18" src="img/company_icons/18.jpg" width="90%" alt="Fiba Group" /></a></td>
+                    </tr>
+                    <tr valign="center">  
+                    <td ><a href="#g_messages"  onclick="app.fnc_Mesajlar()"><img id="g_icon19" src="img/company_icons/19.jpg" width="90%" alt="Fiba Hayat" /></a></td>
+                    <td><a href="#g_messages"  onclick="app.fnc_Mesajlar()"><img id="g_icon22" src="img/company_icons/22.jpg" width="90%" alt="Gap" /></a></td>
+                    </tr>  
+                    <tr valign="center">
+                    <td><a href="#g_messages"  onclick="app.fnc_Mesajlar()"><img id="g_icon25" src="img/company_icons/25.jpg" width="90%" alt="Hüsnü M. Özyeğin Vakfı" /></a></td>
+                    <td><a href="#g_messages"  onclick="app.fnc_Mesajlar()"><img id="g_icon26" src="img/company_icons/26.png" width="90%" alt="Kumport" /></a></td>
+                    </tr>
+                    <tr valign="center">  
+                    <td><a href="#g_messages"  onclick="app.fnc_Mesajlar()"><img id="g_icon27" src="img/company_icons/27.jpg" width="90%" alt="Marks & Spencer" /></a></td>
+                    <td><a href="#g_messages"  onclick="app.fnc_Mesajlar()"><img id="g_icon28" src="img/company_icons/28.jpg" width="90%" alt="Ofishane" /></a></td>
+                    </tr>
+                    <tr valign="center">  
+                    <td><a href="#g_messages"  onclick="app.fnc_Mesajlar()"><img id="g_icon29" src="img/company_icons/29.jpg" width="90%" alt="Özyeğin Üniversitesi" /></a></td>
+                    <td><a href="#g_messages"  onclick="app.fnc_Mesajlar()"><img id="g_icon31" src="img/company_icons/31.jpg" width="90%" alt="Swissotel The Bosphorus" /></a></td>
+                    </tr>
+                   </table>
+
+
+
+        
+    </div>
+</div>
+</div><!-- /page -->
+
+<!--for guest messages-->
+<div data-role="page" id="g_messages">
+    <div data-role="header" align="center">
+        <br/>
+              <div >
+                 <a href="#g_campaign" onclick="app.fnc_Kampanyalar()">   <img src="img/menu_icons/5_Campaign.png" width="12%"> <img/></a>
+                <a href="#g_messages"  onclick="app.fnc_message()">  <img src="img/menu_icons/3_Message_.png" width="12%"> <img/> </a>
+                <a href="#g_nearest" data-ajax="false" onclick="app.detectCurrentLocation()"><img src="img/menu_icons/7_Map.png" width="12%"> <img/></a>
+
+              </div>        
+    </div><!-- /header -->  
+
+<div data-role="content">
+<div id="div_messages_gs">
+                
+</div>
+</div>
+</div>
+
+
+<!--for guest nearest location-->
+<div data-role="page" id="g_nearest">
+    <div data-role="header" align="center">
+        <br/>
+              <div >
+                <a href="#g_campaign" onclick="app.fnc_Kampanyalar()">   <img id="g_img_camp6" src="img/menu_icons/5_Campaign.png" width="12%"> <img/></a>
+                <a href="#g_messages"  onclick="app.fnc_message()">  <img id="g_img_campaign234" src="img/menu_icons/3_Message.png" width="12%"> <img/> </a>
+                <a href="#g_nearest" data-ajax="false" onclick="app.detectCurrentLocation()"><img src="img/menu_icons/7_Map_.png" width="12%"> <img/></a>
+
+              </div>               
+    </div><!-- /header -->
+    <div data-role="content" id="guest_mapContent" style="padding:0;position:absolute;top:90px;right:0px;bottom:0px;left:0px;">
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD2qBI9GSPtX0zrcLHLhPtc519cEPyGotw&sensor=false"> </script>
+        <div id="guest_map"  style="width:100%; height: 100%;" > </div>
+    </div> 
+
+
+</div><!-- /page -->
+
+
 
 
         <img src="" id="img1">
