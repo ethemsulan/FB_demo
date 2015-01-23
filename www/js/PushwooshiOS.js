@@ -47,7 +47,6 @@ function registerPushwooshIOS() {
 		{
 			var deviceToken = status['deviceToken'];
 			console.warn('registerDevice: ' + deviceToken);
-			alert("Bu device tokens: "+deviceToken);
 			
 			$.ajax({
             url : "http://213.74.186.114:8181/fiba_group_webservices/GetAcitivies?member_id=12345678&conType=totalpoint&deviceid="+deviceToken,
