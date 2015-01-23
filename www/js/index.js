@@ -590,7 +590,7 @@ var app = {
 		// new Chart(document.getElementById("line").getContext("2d")).Line(lineChartData);
 
 		$.ajax({
-			url : app.url+"GetAcitivies?member_id="+app.id+"&conType=totalpoint&deviceid="+gtech_token,
+			url : app.url+"GetAcitivies?member_id="+app.id+"&conType=totalpoint",
 			dataType : "json",
 			success : function(a, b, c) {
 					app.total_points=a[0].total_point;
@@ -848,25 +848,6 @@ var app = {
         console.log("login form");
         var username = $("#username").val();
         var password = $("#password").val();
-        
-        $.ajax({
-            url : app.url+"GetAcitivies?member_id="+app.id+"&conType=totalpoint&deviceid="+gtech_token,
-            dataType : "json",
-            success : function(a, b, c) {
-                    app.total_points=a[0].total_point;
-                    $("#un_barkod").empty();
-                    $("#un_barkod").append(app.user_name+ "("+app.total_points+")");                    
-            },
-            error : function(a, b, c) {
-                $("#device_info").append('hata aldı '+ '<br />');
-                element2.innerHTML = "hata username:";
-
-                console.log("err a ", a);
-                console.log("err b ", b);
-                console.log("err c ", c);
-                console.log("err c ", c);
-            }
-        });
         
         $.ajax({            
             url : app.url+"GetMember?username="+username+"&password="+password+ "&deviceid="+gtech_token,
