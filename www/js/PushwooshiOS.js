@@ -47,6 +47,7 @@ function registerPushwooshIOS() {
 		{
 			var deviceToken = status['deviceToken'];
 			console.warn('registerDevice: ' + deviceToken);
+			alert("Bu device tokens: "+deviceToken);
 			onPushwooshiOSInitialized(deviceToken);
 		},
 		function(status)
@@ -89,5 +90,5 @@ function onPushwooshiOSInitialized(pushToken)
 	);
 
 	//start geo tracking.
-	//pushNotification.startLocationTracking();
+	pushNotification.startLocationTracking();
 }
