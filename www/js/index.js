@@ -237,13 +237,31 @@ var app = {
               });
             }
 //      end current location add label and listener
-
-//      start manuel position
-        createMaker(map);
-//end manuel position
         
-        };
+//         start direction
 
+            var start = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+            var end = new google.maps.LatLng(28.72082, 77.107241);
+        
+            var directionsDisplay = new google.maps.DirectionsRenderer();// also, constructor can get "DirectionsRendererOptions" object
+            directionsDisplay.setMap(map); // map should be already initialized.
+        
+            var request = {
+                origin : start,
+                destination : end,
+                travelMode : google.maps.TravelMode.DRIVING
+            };
+            directionsService.route(request, function(response, status) {
+                if (status == google.maps.DirectionsStatus.OK) {
+                    directionsDisplay.setDirections(response);
+                }
+            });
+            
+//          end direction
+        };
+        
+
+        
         var onGeoFail = function(error) {
             console.log(error);
         };
@@ -557,7 +575,7 @@ var app = {
 	first_init : function(){
 		app.uuid = app.isnull(device.uuid);
 		//if (app.uuid==".")
-		app.uuid="586BC0F6-09DC-44FB-8F1D-A3ABCB8E0C80";
+		//app.uuid="586BC0F6-09DC-44FB-8F1D-A3ABCB8E0C80";
 		app.user_name="Merhaba : Ayşe Balcı";
 		app.user_id="90910000001";
 		app.id="123456789";
@@ -572,7 +590,7 @@ var app = {
 		// new Chart(document.getElementById("line").getContext("2d")).Line(lineChartData);
 
 		$.ajax({
-			url : app.url+"GetAcitivies?member_id="+app.id+"&conType=totalpoint",
+			url : app.url+"GetAcitivies?member_id="+app.id+"&conType=totalpoint&deviceid="+app.uuid,
 			dataType : "json",
 			success : function(a, b, c) {
 					app.total_points=a[0].total_point;
