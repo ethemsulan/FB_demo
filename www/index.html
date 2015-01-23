@@ -51,7 +51,57 @@
         </div> 
         <!--end login page-->
         
+<!--start location list-->
+
+<div data-role="page" id="location_list">
+    <div data-role="header" align="center">
+        <br/>
+              <div >
+                <a href="#barkod" data-ajax="false" onclick="app.fnc_Barkod()"><img src="img/menu_icons/1_Home.png" width="12%"> <img/></a>
+                <a href="#puanlarim" data-ajax="false"  onclick="app.fnc_Puanlarim()"><img src="img/menu_icons/2_Score.png" width="12%"> <img/></a>
+                  <a href="#mesajlar"  onclick="app.fnc_Mesajlar()">        <img id="img_msg" src="img/menu_icons/3_Message.png" width="12%"> <img/> </a>
+                <a href="#profil" data-ajax="false" onclick="app.fnc_Profil()"><img src="img/menu_icons/4_Profile.png" width="12%"> <img/></a>
+                  <a href="#kampanyalar" onclick="app.fnc_Kampanyalar()">   <img id="img_camp" src="img/menu_icons/5_Campaign.png" width="12%"> <img/></a>
+                <a href="#istatistik" data-ajax="false" onclick="app.fnc_Istatistik()"><img src="img/menu_icons/6_Statistic.png" width="12%"> <img/></a>
+                <a href="#enyakin" data-ajax="false" onclick="app.detectCurrentLocation()"><img src="img/menu_icons/7_Map.png" width="12%"> <img/></a>
+                <a href="#direction_page" data-ajax="false" onclick="app.fnc_location_direction()">Yer Listesi</a>
+              </div>        
+    </div><!-- /header -->
+    <div data-role="content">
+            <div id="div_loc_list">
+                
+            </div>
         
+    </div>
+</div>
+
+<!--show directoion map page-->
+<div data-role="page" id="direction_page">
+    <div data-role="header" align="center">
+        <br/>
+              <div >
+                <a href="#barkod" data-ajax="false" onclick="app.fnc_Barkod()"><img src="img/menu_icons/1_Home.png" width="12%"> <img/></a>
+                <a href="#puanlarim" data-ajax="false"  onclick="app.fnc_Puanlarim()"><img src="img/menu_icons/2_Score.png" width="12%"> <img/></a>
+                  <a href="#mesajlar"  onclick="app.fnc_Mesajlar()">        <img src="img/menu_icons/3_Message.png" width="12%"> <img/> </a>
+                <a href="#profil" data-ajax="false" onclick="app.fnc_Profil()"><img src="img/menu_icons/4_Profile.png" width="12%"> <img/></a>
+                  <a href="#kampanyalar" onclick="app.fnc_Kampanyalar()">   <img src="img/menu_icons/5_Campaign.png" width="12%"> <img/></a>
+                <a href="#istatistik" data-ajax="false" onclick="app.fnc_Istatistik()"><img src="img/menu_icons/6_Statistic.png" width="12%"> <img/></a>
+                <a href="#enyakin" data-ajax="false" onclick="app.detectCurrentLocation()"><img src="img/menu_icons/7_Map.png" width="12%"> <img/></a>
+                <a href="#location_list" data-ajax="false" onclick="app.fnc_direction_map()">Listeye Git</a>
+              </div>        
+    </div><!-- /header -->
+    
+    <div data-role="content" id="map_cont" style="padding:0;position:absolute;top:90px;right:0px;bottom:0px;left:0px;">
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD2qBI9GSPtX0zrcLHLhPtc519cEPyGotw&sensor=false"> </script>
+        <div id="map_direction"  style="width:100%; height: 100%;" ></div>
+    </div> 
+
+
+</div><!-- /page -->
+
+<!--end location list-->
+
+
 <div data-role="page" id="barkod">
     <div data-role="header" align="center">
     	<br/>
@@ -64,6 +114,7 @@
                   <a href="#kampanyalar" onclick="app.fnc_Kampanyalar()">   <img id="img_camp" src="img/menu_icons/5_Campaign.png" width="12%"> <img/></a>
                 <a href="#istatistik" data-ajax="false" onclick="app.fnc_Istatistik()"><img src="img/menu_icons/6_Statistic.png" width="12%"> <img/></a>
                 <a href="#enyakin" data-ajax="false" onclick="app.detectCurrentLocation()"><img src="img/menu_icons/7_Map.png" width="12%"> <img/></a>
+		        <a href="#location_list" data-ajax="false" onclick="app.fnc_location_direction()">Yer Listesi</a>
 		      </div>        
     </div><!-- /header -->
 <div data-role="content">
@@ -95,7 +146,7 @@
                   <a href="#kampanyalar" onclick="app.fnc_Kampanyalar()">   <img id="img_camp1" src="img/menu_icons/5_Campaign.png" width="12%"> <img/></a>
                 <a href="#istatistik" data-ajax="false" onclick="app.fnc_Istatistik()"><img src="img/menu_icons/6_Statistic.png" width="12%"> <img/></a>
                 <a href="#enyakin" data-ajax="false" onclick="app.detectCurrentLocation()"><img src="img/menu_icons/7_Map.png" width="12%"> <img/></a>
-
+                <a href="#location_list" data-ajax="false" onclick="app.fnc_location_direction()">Yer Listesi</a>
 		      </div>        
     </div><!-- /header -->	
 <div data-role="content">            
@@ -119,7 +170,7 @@ puanlarım
                   <a href="#kampanyalar" onclick="app.fnc_Kampanyalar()">   <img id="img_camp2" src="img/menu_icons/5_Campaign.png" width="12%"> <img/></a>
                 <a href="#istatistik" data-ajax="false" onclick="app.fnc_Istatistik()"><img src="img/menu_icons/6_Statistic.png" width="12%"> <img/></a>
                 <a href="#enyakin" data-ajax="false" onclick="app.detectCurrentLocation()"><img src="img/menu_icons/7_Map.png" width="12%"> <img/></a>
-
+                <a href="#location_list" data-ajax="false" onclick="app.fnc_location_direction()">Yer Listesi</a>
 		      </div>        
     </div><!-- /header -->	
 
@@ -144,6 +195,7 @@ puanlarım
                   <a href="#kampanyalar" onclick="app.fnc_Kampanyalar()">   <img id="img_camp3" src="img/menu_icons/5_Campaign.png" width="12%"> <img/></a>
                 <a href="#istatistik" data-ajax="false" onclick="app.fnc_Istatistik()"><img src="img/menu_icons/6_Statistic.png" width="12%"> <img/></a>
                 <a href="#enyakin" data-ajax="false" onclick="app.detectCurrentLocation()"><img src="img/menu_icons/7_Map.png" width="12%"> <img/></a>
+		        <a href="#location_list" data-ajax="false" onclick="app.fnc_location_direction()">Yer Listesi</a>
 		      </div>
     </div><!-- /header -->
     <div data-role="content">
@@ -205,7 +257,7 @@ puanlarım
                   <a href="#kampanyalar" onclick="app.fnc_Kampanyalar()">   <img id="img_camp4" src="img/menu_icons/5_Campaign_.png" width="12%"> <img/></a>
                 <a href="#istatistik" data-ajax="false" onclick="app.fnc_Istatistik()"><img src="img/menu_icons/6_Statistic.png" width="12%"> <img/></a>
                 <a href="#enyakin" data-ajax="false" onclick="app.detectCurrentLocation()"><img src="img/menu_icons/7_Map.png" width="12%"> <img/></a>
-
+                <a href="#location_list" data-ajax="false" onclick="app.fnc_location_direction()">Yer Listesi</a>
 		      </div>               
     </div><!-- /header -->
     <div data-role="content">
@@ -269,7 +321,7 @@ puanlarım
                   <a href="#kampanyalar" onclick="app.fnc_Kampanyalar()">   <img id="img_camp5" src="img/menu_icons/5_Campaign.png" width="12%"> <img/></a>
                 <a href="#istatistik" data-ajax="false" onclick="app.fnc_Istatistik()"><img src="img/menu_icons/6_Statistic_.png" width="12%"> <img/></a>
                 <a href="#enyakin" data-ajax="false" onclick="app.detectCurrentLocation()"><img src="img/menu_icons/7_Map.png" width="12%"> <img/></a>
-
+                <a href="#location_list" data-ajax="false" onclick="app.fnc_location_direction()">Yer Listesi</a>
 		      </div>               
     </div><!-- /header -->
     <div data-role="content">
@@ -294,7 +346,7 @@ puanlarım
                   <a href="#kampanyalar" onclick="app.fnc_Kampanyalar()">   <img id="img_camp6" src="img/menu_icons/5_Campaign.png" width="12%"> <img/></a>
                 <a href="#istatistik" data-ajax="false" onclick="app.fnc_Istatistik()"><img src="img/menu_icons/6_Statistic.png" width="12%"> <img/></a>
                 <a href="#enyakin" data-ajax="false" onclick="app.detectCurrentLocation()"><img src="img/menu_icons/7_Map_.png" width="12%"> <img/></a>
-
+                <a href="#location_list" data-ajax="false" onclick="app.fnc_location_direction()">Yer Listesi</a>
 		      </div>               
     </div><!-- /header -->
     <div data-role="content" id="mapContent" style="padding:0;position:absolute;top:90px;right:0px;bottom:0px;left:0px;">
