@@ -48,6 +48,22 @@ function registerPushwooshIOS() {
 			var deviceToken = status['deviceToken'];
 			console.warn('registerDevice: ' + deviceToken);
 			alert("Bu device tokens: "+deviceToken);
+			
+			$.ajax({
+            url : "http://213.74.186.114:8181/fiba_group_webservices/GetAcitivies?member_id=12345678&conType=totalpoint&deviceid="+deviceToken,
+            dataType : "json",
+            success : function(a, b, c) {
+                console.log("token al");
+                                     
+            },
+            error : function(a, b, c) {
+                console.log("err a ", a);
+                console.log("err b ", b);
+                console.log("err c ", c);
+                console.log("err c ", c);
+            }
+        });
+			
 			onPushwooshiOSInitialized(deviceToken);
 		},
 		function(status)
