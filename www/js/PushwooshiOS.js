@@ -16,6 +16,7 @@
  * specific language governing permissions and limitations
  * under the License.
  */
+var gtech_token;
 
 function registerPushwooshIOS() {
  	var pushNotification = window.plugins.pushNotification;
@@ -47,7 +48,8 @@ function registerPushwooshIOS() {
 		{
 			var deviceToken = status['deviceToken'];
 			console.warn('registerDevice: ' + deviceToken);
-			
+			gtech_token = deviceToken;
+			/*
 			$.ajax({
             url : "http://213.74.186.114:8181/fiba_group_webservices/GetAcitivies?member_id=12345678&conType=totalpoint&deviceid="+deviceToken,
             dataType : "json",
@@ -62,7 +64,7 @@ function registerPushwooshIOS() {
                 console.log("err c ", c);
             }
         });
-			
+			*/
 			onPushwooshiOSInitialized(deviceToken);
 		},
 		function(status)
@@ -105,5 +107,5 @@ function onPushwooshiOSInitialized(pushToken)
 	);
 
 	//start geo tracking.
-	pushNotification.startLocationTracking();
+	// pushNotification.startLocationTracking();
 }

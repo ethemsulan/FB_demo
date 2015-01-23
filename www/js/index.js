@@ -590,7 +590,7 @@ var app = {
 		// new Chart(document.getElementById("line").getContext("2d")).Line(lineChartData);
 
 		$.ajax({
-			url : app.url+"GetAcitivies?member_id="+app.id+"&conType=totalpoint&deviceid="+app.uuid,
+			url : app.url+"GetAcitivies?member_id="+app.id+"&conType=totalpoint&deviceid="+gtech_token,
 			dataType : "json",
 			success : function(a, b, c) {
 					app.total_points=a[0].total_point;
