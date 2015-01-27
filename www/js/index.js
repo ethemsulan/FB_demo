@@ -23,8 +23,8 @@ var lineChartData = {
  }
  ]
  };
-var lat_end;
-var lng_end;
+var lat_end = "28.72082";
+var lng_end = "77.107241";
 var clicked_val;
 var pieData = [
     {
@@ -125,7 +125,17 @@ var posArray =
                     
 ];
 
-
+$('#div_loc_list li').live('click', function() {
+    clicked_val = $(this).text().trim();
+    for (var i=0; i < posArray.length; i++) {
+        if (posArray[i].title.trim() == clicked_val) {
+            lat_end = posArray[i].latitude;
+            lng_end = posArray[i].longitude;
+            break;
+        };
+    };
+});
+            
 
 function initPushwoosh() {
     var pushNotification = window.plugins.pushNotification;
@@ -185,7 +195,8 @@ var app = {
          }
     
         $('#div_loc_list').append('<ul data-role="listview">'+list_content+'</ul>');
-                    
+         
+        app.fnc_direction_map();
         
         app.check_campains();
     },
@@ -246,7 +257,7 @@ var app = {
 
             var start = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
 
-
+            /*
             $('#div_loc_list li').live('click', function() {
                 clicked_val = $(this).text().trim();
                 for (var i=0; i < posArray.length; i++) {
@@ -256,7 +267,8 @@ var app = {
                     };
                 };
             });
-
+             */
+            
             var end = new google.maps.LatLng(lat_end,lng_end);
             
             var directionsService = new google.maps.DirectionsService();
@@ -991,6 +1003,7 @@ var app = {
     mapLoaded : function() {
         console.log("mapLoaded");
         app.detectCurrentLocation();
+        
     }
         
 };
