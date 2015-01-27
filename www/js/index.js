@@ -131,9 +131,12 @@ $('#div_loc_list li').live('click', function() {
         if (posArray[i].title.trim() == clicked_val) {
             lat_end = posArray[i].latitude;
             lng_end = posArray[i].longitude;
+            app.fnc_direction_map();
             break;
         };
     };
+    
+    
 });
             
 
@@ -184,24 +187,22 @@ var app = {
                 console.log(err.message);
         }		
 	},
-    fnc_location_direction : function() {
+    fnc_location_list : function() {
         
         $('#div_loc_list ul').remove();
-        
         var list_content ='';
         for (var i=0; i < posArray.length; i++) {
                 var ltitle = posArray[i].title;
                 list_content += '<li><a href="#direction_page">'+ltitle+'</a></li>';
          }
-    
         $('#div_loc_list').append('<ul data-role="listview">'+list_content+'</ul>');
          
-        app.fnc_direction_map();
-        
         app.check_campains();
     },
     fnc_direction_map :  function(){
-              var onGeoSuccess = function(position) {
+         $.mobile.changePage($('#direction_page'));
+         
+        var onGeoSuccess = function(position) {
             console.log(position);
         
             var location = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
@@ -736,9 +737,12 @@ var app = {
                 console.log($("#img_msg").attr('src'));
                 $("#img_msg").attr("src","img/menu_icons/3_Message_y.png");
                 
+                $("#img_msg_loc").attr("src","img/menu_icons/3_Message_y.png");
                 console.log($("#img_camp").attr('src'));
                 $("#img_camp").attr("src","img/menu_icons/5_Campaign_y.png");
         
+                $("#img_camp_loc").attr("src","img/menu_icons/5_Campaign_y.png");
+         
                 console.log($("#img_msg1").attr('src'));
                 $("#img_msg1").attr("src","img/menu_icons/3_Message_y.png");
         
@@ -1003,7 +1007,6 @@ var app = {
     mapLoaded : function() {
         console.log("mapLoaded");
         app.detectCurrentLocation();
-        
     }
         
 };
