@@ -23,7 +23,9 @@ var lineChartData = {
  }
  ]
  };
-
+var lat_end;
+var lng_end;
+var clicked_val;
 var pieData = [
     {
         value: 300,
@@ -123,6 +125,8 @@ var posArray =
                     
 ];
 
+
+
 function initPushwoosh() {
     var pushNotification = window.plugins.pushNotification;
     if(device.platform == "Android")
@@ -203,7 +207,7 @@ var app = {
                 mapTypeId : google.maps.MapTypeId.ROADMAP
             };
             var map_name = "map_direction";
-            var map = new google.maps.Map(document.getElementById(map_name), mapOptions);
+            var map_direction = new google.maps.Map(document.getElementById(map_name), mapOptions);
             //     current location manuel change default image
             var image = {
                 url : 'img/aaa.gif',
@@ -216,7 +220,7 @@ var app = {
             };
             var currentLocationMarker = new google.maps.Marker({
                 position : location,
-                map : map,
+                map : map_direction,
                 bounds : false,
                 title : 'Buradasınız',
                 icon : image,
@@ -233,7 +237,7 @@ var app = {
               });
             
               google.maps.event.addListener(marker, 'click', function() {
-                infowindow.open(map, marker);
+                infowindow.open(map_direction, marker);
               });
             }
 //      end current location add label and listener
@@ -241,21 +245,36 @@ var app = {
 //         start direction
 
             var start = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
-            var end = new google.maps.LatLng(28.72082, 77.107241);
-        
-            var directionsDisplay = new google.maps.DirectionsRenderer();// also, constructor can get "DirectionsRendererOptions" object
-            directionsDisplay.setMap(map); // map should be already initialized.
-        
-            var request = {
-                origin : start,
-                destination : end,
-                travelMode : google.maps.TravelMode.DRIVING
-            };
-            directionsService.route(request, function(response, status) {
-                if (status == google.maps.DirectionsStatus.OK) {
-                    directionsDisplay.setDirections(response);
-                }
+
+
+            $('#div_loc_list li').live('click', function() {
+                clicked_val = $(this).text().trim();
+                for (var i=0; i < posArray.length; i++) {
+                    if (posArray[i].title.trim() == clicked_val) {
+                        lat_end = posArray[i].latitude;
+                        lng_end = posArray[i].longitude;
+                    };
+                };
             });
+
+            var end = new google.maps.LatLng(lat_end,lng_end);
+            
+            var directionsService = new google.maps.DirectionsService();
+            var directionsDisplay = new google.maps.DirectionsRenderer(); 
+
+            directionsDisplay.setMap(map_direction); 
+            var request = { 
+                origin: start, 
+                destination: end, 
+                travelMode: google.maps.DirectionsTravelMode.DRIVING 
+            };
+            directionsService.route(request, function(response, status){ 
+                if (status == google.maps.DirectionsStatus.OK) 
+                { 
+                    directionsDisplay.setDirections(response); 
+                } 
+            }); 
+            
             
 //          end direction
         };
