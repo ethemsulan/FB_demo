@@ -49,7 +49,7 @@ function registerPushwooshAndroid() {
 	pushNotification.registerDevice(
 		function(token)
 		{
-			alert(token);
+			gtech_token = token;
 			//callback when pushwoosh is ready
 			onPushwooshAndroidInitialized(token);
 		},
