@@ -189,18 +189,13 @@ var app = {
 	},
     fnc_location_list : function() {
 
-        $("#div_loc_list ul").page('destroy').page();
-        $("#div_loc_list ul").remove();
+         $("#div_loc_list ul").page('destroy').page();
         var list_content ='';
         for (var i=0; i < posArray.length; i++) {
                 var ltitle = posArray[i].title;
                 list_content += '<li><a href="#direction_page">'+ltitle+'</a></li>';
          }
         $('#div_loc_list').append('<ul data-role="listview">'+list_content+'</ul>');
-//         second open rendering problem solved
-        
-         // 
-         $("#div_loc_list").listview("refresh");
          
         app.check_campains();
     },
