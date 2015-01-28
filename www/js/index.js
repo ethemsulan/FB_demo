@@ -188,7 +188,7 @@ var app = {
         }		
 	},
     fnc_location_list : function() {
-
+         $('#div_loc_list ul').remove();
         var list_content ='';
         for (var i=0; i < posArray.length; i++) {
                 var ltitle = posArray[i].title;
