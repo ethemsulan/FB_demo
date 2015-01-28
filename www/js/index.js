@@ -741,7 +741,10 @@ var app = {
                 console.log($("#img_camp").attr('src'));
                 $("#img_camp").attr("src","img/menu_icons/5_Campaign_y.png");
         
+                $("#img_msg_map_section").attr("src","img/menu_icons/5_Campaign_y.png");
+        
                 $("#img_camp_loc").attr("src","img/menu_icons/5_Campaign_y.png");
+         
          
                 console.log($("#img_msg1").attr('src'));
                 $("#img_msg1").attr("src","img/menu_icons/3_Message_y.png");
