@@ -51,7 +51,7 @@ function registerPushwooshAndroid() {
 		function(token)
 		{
 			gtech_token = token;
-			alert(token);
+			
 			//callback when pushwoosh is ready
 			onPushwooshAndroidInitialized(token);
 		},
