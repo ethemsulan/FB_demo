@@ -50,7 +50,7 @@ function registerPushwooshAndroid() {
 	pushNotification.registerDevice(
 		function(token)
 		{
-			gtech_token = token;
+
 			
 			//callback when pushwoosh is ready
 			onPushwooshAndroidInitialized(token);
@@ -81,6 +81,7 @@ function onPushwooshAndroidInitialized(pushToken)
 	//and HWID if you want to communicate with Pushwoosh API
 	pushNotification.getPushwooshHWID(
 		function(token) {
+		    gtech_token = token;
 			console.warn('Pushwoosh HWID: ' + token);
 		}
 	);
