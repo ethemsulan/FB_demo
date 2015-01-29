@@ -180,12 +180,12 @@ var app = {
 		app.first_init();
 
         
-        try{
-            initPushwoosh();
-        }catch(err) 
-        {
-                console.log(err.message);
-        }		
+        // try{
+            // initPushwoosh();
+        // }catch(err) 
+        // {
+                // console.log(err.message);
+        // }		
 	},
     fnc_location_list : function() {
 
