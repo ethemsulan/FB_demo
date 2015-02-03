@@ -180,6 +180,9 @@ var app = {
 		app.first_init();
 	
 	},
+	fnc_face_to_face:function(){
+        alert("Göster");
+    },
     fnc_location_list : function() {
 
          $("#div_loc_list ul").page('destroy').page();
