@@ -181,7 +181,26 @@ var app = {
 	
 	},
 	fnc_face_to_face:function(){
-        alert("Göster");
+      var xmlhttp=new XMLHttpRequest();
+      xmlhttp.open("GET", "https://opentokrtc.com/cordova.json", false);
+      xmlhttp.send();
+      var data = JSON.parse( xmlhttp.response );
+
+      // Very simple OpenTok Code for group video chat
+      var publisher = TB.initPublisher(data.apiKey,'myPublisherDiv');
+
+      var session = TB.initSession( data.apiKey, data.sid ); 
+      session.on({
+        'streamCreated': function( event ){
+            var div = document.createElement('div');
+            div.setAttribute('id', 'stream' + event.stream.streamId);
+            document.body.appendChild(div);
+            session.subscribe( event.stream, div.id, {subscribeToAudio: false} );
+        }
+      });
+      session.connect(data.token, function(){
+        session.publish( publisher );
+      });
     },
     fnc_location_list : function() {
 
